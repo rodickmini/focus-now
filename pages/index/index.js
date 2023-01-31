@@ -5,27 +5,31 @@ Page({
    * 页面的初始数据
    */
   data: {
-    helloData: {
-      name: 'Weixin'
-    },
     startTimeStamp: 0,
-  },
-
-  changeName: function(e) {
-    // sent data change to view
-    this.setData({
-      name: 'MINA'
-    })
+    duration: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    console.log('onload')
     this.setData({
-      startTimeStamp: +new Date()
+      startTimeStamp: 50
     })
+    
+    // 每隔1秒取一下时间戳，减去starttime，得到duration，计算属性转化成mm:ss格式
+    // this.setData({
+    //   startTimeStamp: +new Date()
+    // })
+    let self = this
+    setInterval(function () {
+      let nowTimeStamp = +new Date(), old = self.startTimeStamp
+      let dur = nowTimeStamp - old
+      console.log(old)
+      self.setData({
+        duration: nowTimeStamp - old
+      })
+    }, 1000)
   },
 
   /**
@@ -39,9 +43,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    this.setData({
-      startTimeStamp: +new Date()
-    })
+    
   },
 
   /**

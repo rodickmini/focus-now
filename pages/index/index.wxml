@@ -3,6 +3,6 @@
   <view class="navbar">专注这一刻</view>
   <view class="center-box">
     <view class="state">工作中...</view>
-    <view class="counter">05:00</view>
+    <view class="counter">{{duration}}</view>
   </view>
 </view>
