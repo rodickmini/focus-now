@@ -1,5 +1,20 @@
 /* pages/index/index.wxss */
 
+@keyframes Breath {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+}
+
 .container {
   position: absolute;
   top: 0;
@@ -9,16 +24,18 @@
 
   background-color: #71B49C;
   color: #FFFFFFCC;
+  overflow: hidden;
 }
 
 .navbar {
-  height: 150rpx;
+  height: 300rpx;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 
-  font-size: 18rpx;
+  font-size: 32rpx;
+  font-weight: bold;
 }
 
 .center-box {
@@ -31,22 +48,23 @@
 }
 
 .center-box .state {
-  font-size: 20rpx;
+  font-size: 30rpx;
   color: rgba(255, 255, 255, 0.8);
 
   margin-bottom: 20rpx;
+  animation: Breath 5s linear infinite;
 }
 
 .center-box .counter {
   box-sizing: border-box;
-  width: 256rpx;
-  height: 256rpx;
+  width: 356rpx;
+  height: 356rpx;
   border-radius: 100%;
 
   /* PanelBg */
 
   background: rgba(255, 255, 255, 0.08);
-  border: 24rpx solid rgba(255, 255, 255, 0.35);
+  border: 34rpx solid rgba(255, 255, 255, 0.35);
 
   display: flex;
   flex-direction: column;
@@ -56,5 +74,5 @@
   font-family: 'Arial';
   font-style: normal;
   font-weight: 700;
-  font-size: 60rpx;
+  font-size: 80rpx;
 }

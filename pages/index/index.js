@@ -6,29 +6,36 @@ Page({
    */
   data: {
     startTimeStamp: 0,
-    duration: 0
+    duration: "00:00"
+  },
+
+  displayDuration: function(miliseconds) {
+    //将毫秒数转化成mm:ii格式字符串
+    let min = Math.floor(miliseconds / 1000 / 60)
+    let minutes = min > 9 ? min : "0"+ min
+    let sec = Math.floor(miliseconds / 1000 % 60)
+    let seconds = sec > 9 ? sec : "0"+ sec
+    this.setData({
+      duration: minutes + ":" + seconds
+    })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    let now = +new Date()
+    console.log(now)
     this.setData({
-      startTimeStamp: 50
+      startTimeStamp: now
     })
     
     // 每隔1秒取一下时间戳，减去starttime，得到duration，计算属性转化成mm:ss格式
-    // this.setData({
-    //   startTimeStamp: +new Date()
-    // })
-    let self = this
-    setInterval(function () {
-      let nowTimeStamp = +new Date(), old = self.startTimeStamp
-      let dur = nowTimeStamp - old
-      console.log(old)
-      self.setData({
-        duration: nowTimeStamp - old
-      })
+    
+    setInterval(() => {
+      let now = +new Date(), old = this.data.startTimeStamp
+      let dur = now - old //毫秒数
+      this.displayDuration(dur)
     }, 1000)
   },
 
