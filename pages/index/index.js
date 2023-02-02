@@ -45,7 +45,8 @@ Page({
 
   startFocus: function() {
     this.setData({
-      focusing: true
+      focusing: true,
+      duration: "00:00"
     })
     const res = wx.getStorageInfoSync()
     if(res.keys.indexOf('startTimeStamp') === -1) {
