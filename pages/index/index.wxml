@@ -1,6 +1,6 @@
 <!--pages/index/index.wxml-->
 <view class="container">
-  <view class="navbar">专注这一刻</view>
+  <!-- <view class="navbar">专注这一刻</view> -->
   <view class="center-box">
     <view class="state">无所事事中</view>
     <view class="counter">{{duration}}</view>

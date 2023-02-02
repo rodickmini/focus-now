@@ -6,7 +6,8 @@ Page({
    */
   data: {
     startTimeStamp: 0,
-    duration: "00:00"
+    duration: "",
+    intervalHandler: null
   },
 
   displayDuration: function(miliseconds) {
@@ -24,18 +25,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    let now = +new Date()
-    console.log(now)
-    this.setData({
-      startTimeStamp: now
-    })
-    
-    // 每隔1秒取一下时间戳，减去startTimeStamp，得到duration，调用displayDuration方法转化成mm:ss格式
-    setInterval(() => {
-      let now = +new Date(), old = this.data.startTimeStamp
-      let dur = now - old //毫秒数
-      this.displayDuration(dur)
-    }, 1000)
+    try {
+      const res = wx.getStorageInfoSync()
+      console.log(res.keys)
+      if(res.keys.indexOf('startTimeStamp') === -1) { //没取到
+        let startTimeStamp = +new Date()
+        wx.setStorageSync('startTimeStamp', startTimeStamp)
+      }
+    } catch (e) {
+      // Do something when catch error
+      console.log('getStorageInfoSync error')
+    }
   },
 
   /**
@@ -49,14 +49,29 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
+    // 获取当前时间戳写入localstrage: startTimeStamp
+    let startTimeStamp = wx.getStorageSync('startTimeStamp')
+
+    this.setData({
+      startTimeStamp: startTimeStamp
+    })
     
+    // 每隔1秒取一下时间戳，减去startTimeStamp，得到duration，调用displayDuration方法转化成mm:ss格式
+    this.intervalHandler = setInterval(() => {
+      let now = +new Date(), old = this.data.startTimeStamp
+      let dur = now - old //毫秒数
+      this.displayDuration(dur)
+    }, 1000)
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide() {
+    // 写入localstorage
+    // clearInterval
 
+    clearInterval(this.intervalHandler)
   },
 
   /**
