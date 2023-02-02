@@ -30,8 +30,7 @@ Page({
       startTimeStamp: now
     })
     
-    // 每隔1秒取一下时间戳，减去starttime，得到duration，计算属性转化成mm:ss格式
-    
+    // 每隔1秒取一下时间戳，减去startTimeStamp，得到duration，调用displayDuration方法转化成mm:ss格式
     setInterval(() => {
       let now = +new Date(), old = this.data.startTimeStamp
       let dur = now - old //毫秒数
