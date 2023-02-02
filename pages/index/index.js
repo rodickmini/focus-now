@@ -9,7 +9,7 @@ Page({
     eventName: '无所事事中',
     btnText: '开始专注',
     startTimeStamp: 0,
-    duration: "",
+    duration: "00:00",
     intervalHandler: null
   },
 
@@ -24,29 +24,10 @@ Page({
     })
   },
 
-  showActionSheet: function() {
-    let self = this
-    wx.showActionSheet({
-      itemList: ['专注下一件事', '结束专注'],
-      success (res) {
-        if (res.tapIndex ===  0) {
-          //专注下一件事
-          self.startFocus()
-        } else if (res.tapIndex ===  1) {
-          //结束专注
-          self.endFocus()
-        }
-      },
-      fail (res) {
-        console.log(res.errMsg)
-      }
-    })    
-  },
-
   startFocus: function() {
+    wx.vibrateShort()
     this.setData({
-      focusing: true,
-      duration: "00:00"
+      focusing: true
     })
     const res = wx.getStorageInfoSync()
     if(res.keys.indexOf('startTimeStamp') === -1) {
@@ -74,6 +55,7 @@ Page({
   },
 
   endFocus: function() {
+    wx.vibrateShort()
     this.setData({
       focusing: false
     })
@@ -89,7 +71,7 @@ Page({
     console.log('this.intervalHandler', this.data.intervalHandler)
     clearInterval(this.data.intervalHandler)
     this.setData({
-      duration: ''
+      duration: '00:00'
     })
   },
 
@@ -111,7 +93,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    // this.startFocus()
+    this.startFocus()
   },
 
   /**

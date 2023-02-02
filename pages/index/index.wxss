@@ -22,7 +22,7 @@
   bottom: 0;
   left: 0;
 
-  background-color: #71B49C;
+  /* background-color: #71B49C; */
   color: #FFFFFFCC;
   overflow: hidden;
 }
