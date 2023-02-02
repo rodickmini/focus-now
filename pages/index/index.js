@@ -5,6 +5,9 @@ Page({
    * 页面的初始数据
    */
   data: {
+    focusing: false,
+    eventName: '无所事事中',
+    btnText: '开始专注',
     startTimeStamp: 0,
     duration: "",
     intervalHandler: null
@@ -21,21 +24,79 @@ Page({
     })
   },
 
+  showActionSheet: function() {
+    let self = this
+    wx.showActionSheet({
+      itemList: ['专注下一件事', '结束专注'],
+      success (res) {
+        if (res.tapIndex ===  0) {
+          //专注下一件事
+          self.startFocus()
+        } else if (res.tapIndex ===  1) {
+          //结束专注
+          self.endFocus()
+        }
+      },
+      fail (res) {
+        console.log(res.errMsg)
+      }
+    })    
+  },
+
+  startFocus: function() {
+    this.setData({
+      focusing: true
+    })
+    const res = wx.getStorageInfoSync()
+    if(res.keys.indexOf('startTimeStamp') === -1) {
+      let startTimeStamp = +new Date()
+      wx.setStorageSync('startTimeStamp', startTimeStamp)
+      this.setData({
+        startTimeStamp: startTimeStamp
+      })
+    }else {
+      let startTimeStamp = wx.getStorageSync('startTimeStamp')
+      this.setData({
+        startTimeStamp: startTimeStamp
+      })
+    }
+    // 每隔1秒取一下时间戳，减去startTimeStamp，得到duration，调用displayDuration方法转化成mm:ss格式
+    let handler = setInterval(() => {
+      let now = +new Date(), old = this.data.startTimeStamp
+      let dur = now - old //毫秒数
+      this.displayDuration(dur)
+    }, 1000)
+
+    this.setData({
+      intervalHandler: handler
+    })
+  },
+
+  endFocus: function() {
+    this.setData({
+      focusing: false
+    })
+    let now = +new Date()
+    let data = {
+      eventName: this.data.eventName,
+      start: this.data.startTimeStamp,
+      end: now
+    }
+    wx.setStorageSync(now + '', data)
+    wx.removeStorageSync('startTimeStamp')
+
+    console.log('this.intervalHandler', this.data.intervalHandler)
+    clearInterval(this.data.intervalHandler)
+    this.setData({
+      duration: ''
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    try {
-      const res = wx.getStorageInfoSync()
-      console.log(res.keys)
-      if(res.keys.indexOf('startTimeStamp') === -1) { //没取到
-        let startTimeStamp = +new Date()
-        wx.setStorageSync('startTimeStamp', startTimeStamp)
-      }
-    } catch (e) {
-      // Do something when catch error
-      console.log('getStorageInfoSync error')
-    }
+    
   },
 
   /**
@@ -49,19 +110,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    // 获取当前时间戳写入localstrage: startTimeStamp
-    let startTimeStamp = wx.getStorageSync('startTimeStamp')
-
-    this.setData({
-      startTimeStamp: startTimeStamp
-    })
-    
-    // 每隔1秒取一下时间戳，减去startTimeStamp，得到duration，调用displayDuration方法转化成mm:ss格式
-    this.intervalHandler = setInterval(() => {
-      let now = +new Date(), old = this.data.startTimeStamp
-      let dur = now - old //毫秒数
-      this.displayDuration(dur)
-    }, 1000)
+    // this.startFocus()
   },
 
   /**
@@ -71,7 +120,7 @@ Page({
     // 写入localstorage
     // clearInterval
 
-    clearInterval(this.intervalHandler)
+    clearInterval(this.data.intervalHandler)
   },
 
   /**

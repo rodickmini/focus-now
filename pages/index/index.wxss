@@ -81,3 +81,20 @@
   font-weight: 700;
   font-size: 80rpx;
 }
+
+.center-box .btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 280rpx;
+  height: 80rpx;
+
+  margin-top: 40rpx;
+
+
+  padding: 20rpx 0;
+  border: 2rpx solid rgba(255, 255, 255, 0.35);
+  border-radius: 80rpx;
+}
