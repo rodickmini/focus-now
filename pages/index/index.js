@@ -79,7 +79,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    
+    //如果localStorage中有startTimeStamp则恢复focus
+    const res = wx.getStorageInfoSync()
+    if(res.keys.indexOf('startTimeStamp') !== -1) {
+      this.startFocus()
+    }
   },
 
   /**
@@ -93,24 +97,22 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    this.startFocus()
+    
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide() {
-    // 写入localstorage
-    // clearInterval
-
-    clearInterval(this.data.intervalHandler)
+    
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload() {
-
+    // clearInterval
+    clearInterval(this.data.intervalHandler)
   },
 
   /**
