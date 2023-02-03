@@ -1,0 +1,2 @@
+<!--pages/stat/stat.wxml-->
+<view class="back" bindtap="navigateBack">返回</view>

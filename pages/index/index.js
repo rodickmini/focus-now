@@ -67,16 +67,15 @@ Page({
     this.setData({
       focusing: false
     })
-    let now = +new Date()
+    let start = this.data.startTimeStamp, end = +new Date()
     let data = {
       eventName: this.data.eventName,
-      start: this.data.startTimeStamp,
-      end: now
+      start,
+      end
     }
-    wx.setStorageSync(now + '', data)
+    wx.setStorageSync('session' + start, data)
     wx.removeStorageSync('startTimeStamp')
 
-    console.log('this.intervalHandler', this.data.intervalHandler)
     clearInterval(this.data.intervalHandler)
     this.setData({
       duration: '00:00'
@@ -86,6 +85,13 @@ Page({
   inputEvent: function(e) {
     this.setData({
       inputValue: e.detail.value
+    })
+  },
+
+  navigateToStatPage: function() {
+    console.log('navigateToStatPage')
+    wx.navigateTo({
+      url: '/pages/stat/stat'
     })
   },
 

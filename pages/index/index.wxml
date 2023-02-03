@@ -1,7 +1,7 @@
 <!--pages/index/index.wxml-->
 <view class="container">
-  <!-- <view class="navbar">专注这一刻</view> -->
   <view class="center-box">
+    <view class="stat" bindtap="navigateToStatPage">统计</view>
     <input class="input" bindinput="inputEvent" placeholder="填写你当前专注的事情" 
      wx:if="{{!focusing}}"/>
     <view class="state" wx:else>{{eventName}}</view>

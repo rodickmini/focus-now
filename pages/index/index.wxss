@@ -5,6 +5,10 @@
     transform: scale(1);
     opacity: 1;
   }
+  10% {
+    transform: scale(1);
+    opacity: 1;
+  }
   50% {
     transform: scale(0.9);
     opacity: 0.8;
@@ -27,15 +31,20 @@
   overflow: hidden;
 }
 
-.navbar {
-  height: 300rpx;
+.container .stat {
   display: flex;
   flex-direction: row;
-  justify-content: center;
   align-items: center;
+  padding: 20rpx;
+  gap: 8rpx;
 
-  font-size: 32rpx;
-  font-weight: bold;
+  position: absolute;
+  left: 50rpx;
+  top: 100rpx;
+
+  font-size: 50rpx;
+  line-height: 40rpx;
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .center-box {
