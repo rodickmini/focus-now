@@ -6,7 +6,7 @@ Page({
    */
   data: {
     focusing: false,
-    eventName: '无所事事中',
+    eventName: '工作中',
     btnText: '开始专注',
     startTimeStamp: 0,
     duration: "00:00",
@@ -47,6 +47,7 @@ Page({
       let now = +new Date(), old = this.data.startTimeStamp
       let dur = now - old //毫秒数
       this.displayDuration(dur)
+      wx.vibrateShort()
     }, 1000)
 
     this.setData({
