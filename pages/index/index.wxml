@@ -2,8 +2,11 @@
 <view class="container">
   <!-- <view class="navbar">专注这一刻</view> -->
   <view class="center-box">
-    <view class="state">{{eventName}}</view>
-    <view class="counter">{{duration}}</view>
+    <input class="input" bindinput="inputEvent" placeholder="填写你当前专注的事情" 
+     wx:if="{{!focusing}}"/>
+    <view class="state" wx:else>{{eventName}}</view>
+
+    <view class="counter {{focusing?'focusing': ''}}">{{duration}}</view>
     <view class="btn" wx:if="{{focusing}}" bindtap="endFocus">结束专注</view>
     <view class="btn" wx:else bindtap="startFocus">开始专注</view>
   </view>

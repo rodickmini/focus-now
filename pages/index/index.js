@@ -6,7 +6,8 @@ Page({
    */
   data: {
     focusing: false,
-    eventName: '工作中',
+    eventName: '',
+    inputValue: '',
     btnText: '开始专注',
     startTimeStamp: 0,
     duration: "00:00",
@@ -27,7 +28,11 @@ Page({
   startFocus: function() {
     wx.vibrateShort()
     this.setData({
-      focusing: true
+      focusing: true,
+      eventName: this.data.inputValue ? this.data.inputValue : '无所事事中'
+    })
+    this.setData({
+      inputValue: ''
     })
     const res = wx.getStorageInfoSync()
     if(res.keys.indexOf('startTimeStamp') === -1) {
@@ -47,7 +52,9 @@ Page({
       let now = +new Date(), old = this.data.startTimeStamp
       let dur = now - old //毫秒数
       this.displayDuration(dur)
-      wx.vibrateShort()
+
+      //TODO: 每秒短震动
+      // wx.vibrateShort()
     }, 1000)
 
     this.setData({
@@ -73,6 +80,12 @@ Page({
     clearInterval(this.data.intervalHandler)
     this.setData({
       duration: '00:00'
+    })
+  },
+
+  inputEvent: function(e) {
+    this.setData({
+      inputValue: e.detail.value
     })
   },
 
