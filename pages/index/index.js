@@ -16,12 +16,30 @@ Page({
 
   displayDuration: function(miliseconds) {
     //将毫秒数转化成mm:ii格式字符串
-    let min = Math.floor(miliseconds / 1000 / 60)
-    let minutes = min > 9 ? min : "0"+ min
-    let sec = Math.floor(miliseconds / 1000 % 60)
-    let seconds = sec > 9 ? sec : "0"+ sec
+    let totalSecs = Math.floor(miliseconds / 1000)
+
+    let minStr = "", secStr = ""
+    let min = Math.floor(totalSecs / 60)
+    let sec = Math.floor(totalSecs % 60)
+    
+    if ( min <= 9 ) {
+      minStr = "0"+ min
+    } else if (min > 9 && min <= 59) {
+      minStr = "" + min
+    } else if (min > 59 && min <= 9 * 60) {
+
+    }
+
+    if ( sec <= 9 ) {
+      secStr = "0"+ sec
+    } else if (sec > 9 && sec <= 59) {
+      secStr = "" + sec
+    } else if (sec > 59 && sec <= 9 * 60) {
+
+    } 
+
     this.setData({
-      duration: minutes + ":" + seconds
+      duration: minStr + ":" + secStr
     })
   },
 
