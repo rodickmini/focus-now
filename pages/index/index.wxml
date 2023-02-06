@@ -6,7 +6,10 @@
      wx:if="{{!focusing}}"/>
     <view class="state" wx:else>{{eventName}}</view>
 
-    <view class="counter {{focusing?'focusing': ''}}">{{duration}}</view>
+    <view class="counter {{focusing?'focusing': ''}}">
+      <view class="main-dis">{{section1}}:{{section2}}</view>
+      <view class="sub-dis" wx:if="{{section3 !== '00'}}">{{section3}}</view>
+    </view>
     <view class="btn" wx:if="{{focusing}}" bindtap="endFocus">结束专注</view>
     <view class="btn" wx:else bindtap="startFocus">开始专注</view>
   </view>

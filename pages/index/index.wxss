@@ -95,6 +95,8 @@
 }
 
 .center-box .counter {
+  position: relative;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -108,12 +110,28 @@
   background: rgba(255, 255, 255, 0.08);
   border: 34rpx solid rgba(255, 255, 255, 0.35);
 
-  font-family: 'Arial';
-  font-style: normal;
-  font-weight: bold;
   font-size: 80rpx;
+  
 
 }
+
+.center-box .counter .main-dis {
+  font-family: "Menlo";
+  font-style: normal;
+  font-weight: bold;
+}
+
+.center-box .counter .sub-dis {
+  position: absolute;
+  bottom: 30rpx;
+  
+  font-family: "Menlo";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 0.5em;
+}
+
+
 .center-box .counter.focusing {
   animation: Breath 10s linear infinite;
 }

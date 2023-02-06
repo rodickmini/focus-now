@@ -10,7 +10,9 @@ Page({
     inputValue: '',
     btnText: '开始专注',
     startTimeStamp: 0,
-    duration: "00:00",
+    section1: "00",
+    section2: "00",
+    section3: "00",
     intervalHandler: null
   },
 
@@ -44,32 +46,22 @@ Page({
 
   // TODO返回{hours, minutes, seconds}
   displayDuration: function(miliseconds) {
-    //将毫秒数转化成mm:ii格式字符串
-    let totalSecs = Math.floor(miliseconds / 1000)
+    let {hours, minutes, seconds} = this.timeFormat(miliseconds)
 
-    let minStr = "", secStr = ""
-    let min = Math.floor(totalSecs / 60)
-    let sec = Math.floor(totalSecs % 60)
+    if(hours === '00') {
+      this.setData({
+        section1: minutes,
+        section2: seconds,
+        section3: '00',
+      })
+    } else {
+      this.setData({
+        section1: hours,
+        section2: minutes,
+        section3: seconds,
+      })
+    }
     
-    if ( min <= 9 ) {
-      minStr = "0"+ min
-    } else if (min > 9 && min <= 59) {
-      minStr = "" + min
-    } else if (min > 59 && min <= 9 * 60) {
-
-    }
-
-    if ( sec <= 9 ) {
-      secStr = "0"+ sec
-    } else if (sec > 9 && sec <= 59) {
-      secStr = "" + sec
-    } else if (sec > 59 && sec <= 9 * 60) {
-
-    }
-
-    this.setData({
-      duration: minStr + ":" + secStr
-    })
   },
 
   startFocus: function() {
@@ -94,7 +86,7 @@ Page({
         startTimeStamp: startTimeStamp
       })
     }
-    // 每隔1秒取一下时间戳，减去startTimeStamp，得到duration，调用displayDuration方法转化成mm:ss格式
+    // 每隔1秒取一下时间戳，减去startTimeStamp，得到dur，调用displayDuration方法转化成hh:mm:ss格式
     let handler = setInterval(() => {
       let now = +new Date(), old = this.data.startTimeStamp
       let dur = now - old //毫秒数
@@ -125,7 +117,9 @@ Page({
 
     clearInterval(this.data.intervalHandler)
     this.setData({
-      duration: '00:00'
+      section1: '00',
+      section2: '00',
+      section3: '00',
     })
   },
 
