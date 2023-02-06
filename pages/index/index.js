@@ -12,7 +12,7 @@ Page({
     startTimeStamp: 0,
     section1: "00",
     section2: "00",
-    section3: "00",
+    section3: "",
     intervalHandler: null
   },
 
@@ -52,7 +52,7 @@ Page({
       this.setData({
         section1: minutes,
         section2: seconds,
-        section3: '00',
+        section3: '',
       })
     } else {
       this.setData({
@@ -75,6 +75,7 @@ Page({
     })
     const res = wx.getStorageInfoSync()
     if(res.keys.indexOf('startTimeStamp') === -1) {
+      // let startTimeStamp = +new Date() - 59 * 60 * 1000
       let startTimeStamp = +new Date()
       wx.setStorageSync('startTimeStamp', startTimeStamp)
       this.setData({
@@ -119,7 +120,7 @@ Page({
     this.setData({
       section1: '00',
       section2: '00',
-      section3: '00',
+      section3: '',
     })
   },
 
