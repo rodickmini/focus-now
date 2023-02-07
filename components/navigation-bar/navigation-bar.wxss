@@ -9,7 +9,7 @@
   position: absolute;
   width: 100%;
 
-  color: #333;
-  font-size: 14px;
+  color: #fff;
+  font-size: 36rpx;
   text-align: center;
 }

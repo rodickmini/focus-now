@@ -15,7 +15,7 @@ Page({
     section3: "",
     intervalHandler: null,
     defaultData: {
-      title: "我的主页", // 导航栏标题
+      title: "专注这一刻", // 导航栏标题
     }
   },
 
