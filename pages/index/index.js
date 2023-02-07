@@ -13,7 +13,10 @@ Page({
     section1: "00",
     section2: "00",
     section3: "",
-    intervalHandler: null
+    intervalHandler: null,
+    defaultData: {
+      title: "我的主页", // 导航栏标题
+    }
   },
 
   /*timeFormat
