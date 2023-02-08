@@ -19,11 +19,11 @@ Page({
     const res = wx.getStorageInfoSync()
     if(res.keys.length !== 0) {
       let keys = res.keys, arr = []
-      keys.forEach((el, index) => {
-        if(el.indexOf('session') !== -1) {
-          let item = wx.getStorageSync(el)
-          arr.push(item)
-        }
+      console.log(keys)
+      arr = keys.filter((el) => {
+        return el.indexOf('session') !== -1
+      }).map((el) => {
+        return wx.getStorageSync(el)
       })
       this.setData({
         sessionList: arr
