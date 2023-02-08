@@ -1,2 +1,9 @@
 <!--pages/stat/stat.wxml-->
+<navigation-bar default-data="{{defaultData}}"></navigation-bar>
 <view class="back" bindtap="navigateBack">返回</view>
+
+<view class="session-list">
+  <view class="item" wx:for="{{sessionList}}">
+    {{item.eventName}}：{{item.start}} - {{item.end}}
+  </view>
+</view>

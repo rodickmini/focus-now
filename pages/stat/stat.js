@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    sessionList: []
   },
 
   navigateBack: function() {
@@ -15,7 +15,21 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    // 读取local storage
+    const res = wx.getStorageInfoSync()
+    if(res.keys.length !== 0) {
+      let keys = res.keys, arr = []
+      keys.forEach((el, index) => {
+        if(el.indexOf('session') !== -1) {
+          let item = wx.getStorageSync(el)
+          arr.push(item)
+        }
+      })
+      this.setData({
+        sessionList: arr
+      })
+    }
+    
   },
 
   /**
