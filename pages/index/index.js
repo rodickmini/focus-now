@@ -71,7 +71,7 @@ Page({
     wx.vibrateShort()
     this.setData({
       focusing: true,
-      eventName: this.data.inputValue ? this.data.inputValue : '无所事事中'
+      eventName: this.data.inputValue ? this.data.inputValue : '无所事事'
     })
     this.setData({
       inputValue: ''
