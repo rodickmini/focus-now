@@ -15,7 +15,8 @@ Page({
     section3: "",
     intervalHandler: null,
     navigationData: {
-      title: "专注这一刻", // 导航栏标题
+      title: "专注这一刻",
+      hideBack: true
     }
   },
 
@@ -130,13 +131,6 @@ Page({
   inputEvent: function(e) {
     this.setData({
       inputValue: e.detail.value
-    })
-  },
-
-  navigateToStatPage: function() {
-    console.log('navigateToStatPage')
-    wx.navigateTo({
-      url: '/pages/stat/stat'
     })
   },
 

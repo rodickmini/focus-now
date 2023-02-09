@@ -1,10 +1,6 @@
 <!--pages/index/index.wxml-->
 <view class="container">
   <navigation-bar default-data="{{navigationData}}"></navigation-bar>
-  <view class="stat" bindtap="navigateToStatPage">
-    <view class="iconfont icon-tongji"></view>
-    <text class="a">统计</text>
-  </view>
   <view class="center-box">
     <input class="input" bindinput="inputEvent" placeholder="填写你当前专注的事情" 
      wx:if="{{!focusing}}"/>

@@ -5,7 +5,7 @@ Component({
     defaultData: {
       type: Object,
       value: {
-        title: "我是默认标题"
+        title: "页面标题"
       },
       observer: function (newVal, oldVal) { }
     }
@@ -17,5 +17,15 @@ Component({
     menuHeight: app.globalData.menuHeight,
   },
   attached: function () { },
-  methods: {}
+  methods: {
+    navigateBack() {
+      wx.navigateBack()
+    },
+    navigateToStatPage() {
+      console.log('navigateToStatPage')
+      wx.navigateTo({
+        url: '/pages/stat/stat'
+      })
+    }
+  }
 })

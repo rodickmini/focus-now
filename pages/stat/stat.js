@@ -5,7 +5,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-    sessionList: []
+    sessionList: [],
+    navigationData: {
+      title: "统计",
+      hideBack: false
+    }
   },
 
   navigateBack: function() {
@@ -19,7 +23,6 @@ Page({
     const res = wx.getStorageInfoSync()
     if(res.keys.length !== 0) {
       let keys = res.keys, arr = []
-      console.log(keys)
       arr = keys.filter((el) => {
         return el.indexOf('session') !== -1
       }).map((el) => {
