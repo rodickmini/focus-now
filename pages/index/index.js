@@ -14,7 +14,7 @@ Page({
     section2: "00",
     section3: "",
     intervalHandler: null,
-    defaultData: {
+    navigationData: {
       title: "专注这一刻", // 导航栏标题
     }
   },

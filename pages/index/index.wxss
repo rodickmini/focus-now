@@ -41,9 +41,10 @@
   padding: 20rpx;
   gap: 8rpx;
 
-  font-size: 50rpx;
-  line-height: 40rpx;
+  font-size: 44rpx;
+  line-height: 44rpx;
   color: rgba(255, 255, 255, 0.8);
+  
 }
 
 .center-box {
