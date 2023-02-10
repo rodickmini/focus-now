@@ -45,25 +45,26 @@ Page({
 
   startFocus: function() {
     wx.vibrateShort()
+    let eventName = this.data.inputValue ? this.data.inputValue : '无所事事'
     this.setData({
       focusing: true,
-      eventName: this.data.inputValue ? this.data.inputValue : '无所事事'
-    })
-    this.setData({
+      eventName,
       inputValue: ''
     })
     const res = wx.getStorageInfoSync()
     if(res.keys.indexOf('startTimeStamp') === -1) {
-      // let startTimeStamp = +new Date() - 59 * 60 * 1000
       let startTimeStamp = +new Date()
       wx.setStorageSync('startTimeStamp', startTimeStamp)
+      wx.setStorageSync('nowEvent', eventName)
       this.setData({
         startTimeStamp: startTimeStamp
       })
     }else {
       let startTimeStamp = wx.getStorageSync('startTimeStamp')
+      let nowEvent = wx.getStorageSync('nowEvent')
       this.setData({
-        startTimeStamp: startTimeStamp
+        startTimeStamp: startTimeStamp,
+        eventName: nowEvent
       })
     }
     // 每隔1秒取一下时间戳，减去startTimeStamp，得到dur，调用displayDuration方法转化成hh:mm:ss格式
@@ -94,6 +95,7 @@ Page({
     }
     wx.setStorageSync('session' + start, data)
     wx.removeStorageSync('startTimeStamp')
+    wx.removeStorageSync('nowEvent')
 
     clearInterval(this.data.intervalHandler)
     this.setData({
