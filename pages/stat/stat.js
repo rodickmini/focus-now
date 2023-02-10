@@ -11,12 +11,14 @@ Page({
     navigationData: {
       title: "统计",
       hideBack: false
-    }
+    },
+    todayTotalDisplay: ''
   },
 
   navigateBack: function() {
     wx.navigateBack()
   },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -32,15 +34,40 @@ Page({
       }).sort((a, b) => {
         return b.start - a.start
       }).map((el) => {
+        let [date, time] = timeModule.timeFormat(el.start).split(' ')
         return {
           eventName: el.eventName,
-          start: timeModule.timeFormat(el.start),
-          end: timeModule.timeFormat(el.end),
-          duration: timeModule.durationFormat(el.end - el.start)
+          start: timeModule.timeFormat(el.start), // 02-09 15:30
+          startDate: date,
+          startTime: time,
+          durationMillisecs: el.end - el.start,
+          duration: timeModule.durationFormat(el.end - el.start),
+          isToday: timeModule.isToday(el.start)
         }
       })
+      let todayTotalMillisecs = 0
+      for(let i = 0; i < arr.length; i++) {
+        if(arr[i].isToday) {
+          todayTotalMillisecs += arr[i].durationMillisecs
+        }
+      }
+      console.log("todayTotalMillisecs")
+      console.log(todayTotalMillisecs)
+
+      let durFomat = timeModule.durationFormat(todayTotalMillisecs)
+      console.log(durFomat)
+      let todayTotalDisplay = ''
+      if(durFomat.hours === '00' && durFomat.minutes === '00') {
+        todayTotalDisplay = `${durFomat.seconds}秒`
+      } else if(durFomat.hours === '00') {
+        todayTotalDisplay = `${durFomat.minutes}分钟${durFomat.seconds}秒`
+      } else {
+        todayTotalDisplay = `${durFomat.hours}小时${durFomat.minutes}分钟${durFomat.seconds}秒`
+      }
+
       this.setData({
-        sessionList: arr
+        sessionList: arr,
+        todayTotalDisplay
       })
     }
   },

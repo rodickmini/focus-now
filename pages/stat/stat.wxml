@@ -6,7 +6,7 @@
     今天已专注
   </view>
   <view class="today-duration">
-    3小时20分钟
+    {{todayTotalDisplay}}
   </view>
 </view>
 
@@ -17,8 +17,9 @@
   <view class="session-list">
     <view class="session-item" wx:for="{{sessionList}}">
       <view class="left">
-        <view class="iconfont icon-back"></view>
-        <view class="event">{{item.start}} {{item.eventName}}</view>
+        <view class="iconfont icon-focus"></view>
+        <view class="event" wx:if="{{item.isToday}}">今天 {{item.startTime}} {{item.eventName}}</view>
+        <view class="event" wx:else>{{item.start}} {{item.eventName}}</view>
       </view>
       <view class="right">
         <text wx:if="{{item.duration.hours !=='00'}}">{{item.duration.hours}}小时</text>

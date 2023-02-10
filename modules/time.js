@@ -44,5 +44,10 @@ function timeFormat(timeStamp) {
     return M + D + h + m
 }
 
+function isToday(timeStamp) {
+  return new Date(timeStamp).toDateString() === new Date().toDateString()
+}
+
 exports.durationFormat = durationFormat
 exports.timeFormat = timeFormat
+exports.isToday = isToday
