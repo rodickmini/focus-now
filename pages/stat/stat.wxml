@@ -17,7 +17,7 @@
   <view class="session-list">
     <view class="session-item" wx:for="{{sessionList}}">
       <view class="left">
-        <view class="icon"></view>
+        <view class="iconfont icon-back"></view>
         <view class="event">{{item.start}} {{item.eventName}}</view>
       </view>
       <view class="right">
