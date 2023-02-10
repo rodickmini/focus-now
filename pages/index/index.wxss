@@ -116,9 +116,7 @@
 }
 
 .center-box .counter .main-dis {
-  /* font-family: "Menlo";
-  font-style: normal;
-  font-weight: bold; */
+  font-weight: bold;
 }
 
 .center-box .counter .sub-dis {

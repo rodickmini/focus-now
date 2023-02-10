@@ -1,4 +1,7 @@
 // pages/index/index.js
+
+var timeModule = require('../../modules/time.js')
+
 Page({
 
   /**
@@ -20,37 +23,9 @@ Page({
     }
   },
 
-  /*timeFormat
-    输入miliseconds
-    输出{
-      hours: "",
-      minutes: "",
-      seconds: ""
-    }
-  */
-  timeFormat: function(miliseconds) {
-    let totalSecs = Math.floor(miliseconds / 1000)
-
-    let hourStr = "", minStr = "", secStr = ""
-    let hour = Math.floor(totalSecs / 3600)
-    let remainSecs = Math.floor(totalSecs % 3600)
-    let min = Math.floor(remainSecs / 60)
-    let sec = Math.floor(remainSecs % 60)
-
-    hourStr = hour > 9 ? "" + hour : "0" + hour
-    minStr = min > 9 ? "" + min : "0" + min
-    secStr = sec > 9 ? "" + sec : "0" + sec
-    
-    return {
-      hours: hourStr,
-      minutes: minStr,
-      seconds: secStr
-    }
-  },
-
   // TODO返回{hours, minutes, seconds}
   displayDuration: function(miliseconds) {
-    let {hours, minutes, seconds} = this.timeFormat(miliseconds)
+    let {hours, minutes, seconds} = timeModule.durationFormat(miliseconds)
 
     if(hours === '00') {
       this.setData({
