@@ -1,23 +1,77 @@
 /* pages/stat/stat.wxss */
-.back {
+
+.panel {
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 20rpx;
-  gap: 8rpx;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 40rpx;
+  gap: 20rpx;
 
-  position: absolute;
-  left: 50rpx;
-  top: 50rpx;
+  margin: 0 30rpx;
 
-  font-size: 50rpx;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 16rpx;
+}
+
+.panel .title {
+  font-size: 28rpx;
   line-height: 40rpx;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.panel .today-duration {  
+  font-size: 60rpx;
+  line-height: 84rpx;
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .session-list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 10px;
+  flex-grow: 1;
+
+  width: 100%;
+}
+
+.session-list .session-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px;
+  gap: 10px;
+  
+  width: 100%;
+
+  font-size: 28rpx;
+  line-height: 40rpx;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+
+.session-list .session-item .left {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+  gap: 4px;
+}
+
+.session-list .session-item .left .icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.session1-list {
   padding: 40rpx;
 }
 
-.session-list .item {
+.session1-list .item {
   margin-bottom: 40rpx;
 }

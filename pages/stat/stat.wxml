@@ -1,20 +1,28 @@
 <!--pages/stat/stat.wxml-->
 <navigation-bar default-data="{{navigationData}}"></navigation-bar>
-<!-- <view class="back" bindtap="navigateBack">返回</view> -->
 
-<view class="session-list">
-  <view class="item" wx:for="{{sessionList}}">
-    <view class="event-name">
-      {{item.eventName}}
-    </view>
-    <view class="event-start">
-      从 {{item.start}}
-    </view>
-    <view class="event-start">
-      至 {{item.end}}
-    </view>
-    <view class="event-start">
-      记 {{item.duration.hours}}:{{item.duration.minutes}}:{{item.duration.seconds}}
+<view class="panel">
+  <view class="title">
+    今天已专注
+  </view>
+  <view class="today-duration">
+    3小时20分钟
+  </view>
+</view>
+
+<view class="panel">
+  <view class="title">
+    专注记录
+  </view>
+  <view class="session-list">
+    <view class="session-item" wx:for="{{sessionList}}">
+      <view class="left">
+        <view class="icon"></view>
+        <view class="event">{{item.start}} {{item.eventName}}</view>
+      </view>
+      <view class="right">
+        {{item.duration.hours}}小时{{item.duration.minutes}}分钟{{item.duration.seconds}}秒
+      </view>
     </view>
   </view>
 </view>
