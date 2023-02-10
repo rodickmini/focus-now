@@ -21,7 +21,9 @@
         <view class="event">{{item.start}} {{item.eventName}}</view>
       </view>
       <view class="right">
-        {{item.duration.hours}}小时{{item.duration.minutes}}分钟{{item.duration.seconds}}秒
+        <text wx:if="{{item.duration.hours !=='00'}}">{{item.duration.hours}}小时</text>
+        <text wx:if="{{item.duration.minutes !=='00'}}">{{item.duration.minutes}}分钟</text>
+        <text wx:if="{{item.duration.seconds !=='00'}}">{{item.duration.seconds}}秒</text>
       </view>
     </view>
   </view>
