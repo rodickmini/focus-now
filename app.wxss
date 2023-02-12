@@ -1,7 +1,7 @@
 @import './style/iconfont.wxss';
 
 page{
-  background-color: #71B49C;
+  background-color: hsla(60, 22%, 47%, 1); /* 根据当前小时数变色相 */
 }
 
 view, text {
